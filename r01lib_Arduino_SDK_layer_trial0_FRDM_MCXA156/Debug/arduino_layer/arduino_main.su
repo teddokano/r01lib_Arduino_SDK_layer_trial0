@@ -1,0 +1,2 @@
+../arduino_layer/arduino_main.cpp:10:5:int main()	8	static
+../arduino_layer/arduino_main.cpp:20:6:void delay(long unsigned int)	8	static

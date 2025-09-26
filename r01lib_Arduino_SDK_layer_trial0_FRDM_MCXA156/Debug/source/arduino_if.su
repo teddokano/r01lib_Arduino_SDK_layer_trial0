@@ -1,0 +1,31 @@
+/Applications/MCUXpressoIDE_25.6.136/ide/plugins/com.nxp.mcuxpresso.tools.macosx_25.6.0.202501151204/tools/arm-none-eabi/include/c++/14.2.1/bits/stl_tree.h:2104:5:std::pair<std::_Rb_tree_node_base*, std::_Rb_tree_node_base*> std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_M_get_insert_unique_pos(const key_type&) [with _Key = int; _Val = std::pair<const int, DigitalInOut*>; _KeyOfValue = std::_Select1st<std::pair<const int, DigitalInOut*> >; _Compare = std::less<int>; _Alloc = std::allocator<std::pair<const int, DigitalInOut*> >]	24	static
+/Applications/MCUXpressoIDE_25.6.136/ide/plugins/com.nxp.mcuxpresso.tools.macosx_25.6.0.202501151204/tools/arm-none-eabi/include/c++/14.2.1/bits/stl_tree.h:2454:7:) [with _Args = {const std::piecewise_construct_t&, std::tuple<const int&>, std::tuple<>}; _Key = int; _Val = std::pair<const int, DigitalInOut*>; _KeyOfValue = std::_Select1st<std::pair<const int, DigitalInOut*> >; _Compare = std::less<int>; _Alloc = std::allocator<std::pair<const int, DigitalInOut*> >]	40	static
+/Applications/MCUXpressoIDE_25.6.136/ide/plugins/com.nxp.mcuxpresso.tools.macosx_25.6.0.202501151204/tools/arm-none-eabi/include/c++/14.2.1/bits/stl_tree.h:1926:5:void std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>::_M_erase(_Link_type) [with _Key = int; _Val = std::pair<const int, DigitalInOut*>; _KeyOfValue = std::_Select1st<std::pair<const int, DigitalInOut*> >; _Compare = std::less<int>; _Alloc = std::allocator<std::pair<const int, DigitalInOut*> >]	48	static
+/Applications/MCUXpressoIDE_25.6.136/ide/plugins/com.nxp.mcuxpresso.tools.macosx_25.6.0.202501151204/tools/arm-none-eabi/include/c++/14.2.1/bits/stl_map.h:314:7:std::map<_Key, _Tp, _Compare, _Alloc>::~map() [with _Key = int; _Tp = DigitalInOut*; _Compare = std::less<int>; _Alloc = std::allocator<std::pair<const int, DigitalInOut*> >]	16	static
+../source/arduino_if.cpp:10:6:void SerialClass::begin(int)	0	static
+../source/arduino_if.cpp:11:6:void SerialClass::print(const char*)	0	static
+../source/arduino_if.cpp:12:6:void SerialClass::print(int)	0	static
+../source/arduino_if.cpp:13:6:void SerialClass::print(unsigned int)	0	static
+../source/arduino_if.cpp:14:6:void SerialClass::print(long int)	0	static
+../source/arduino_if.cpp:15:6:void SerialClass::print(long unsigned int)	0	static
+../source/arduino_if.cpp:16:6:void SerialClass::print(double)	0	static
+../source/arduino_if.cpp:17:6:void SerialClass::print(char)	0	static
+../source/arduino_if.cpp:18:6:void SerialClass::print(const std::string&)	0	static
+../source/arduino_if.cpp:19:6:void SerialClass::print(std::string_view)	8	static
+../source/arduino_if.cpp:20:6:void SerialClass::println()	0	static
+../source/arduino_if.cpp:21:6:void SerialClass::println(const char*)	8	static
+../source/arduino_if.cpp:22:6:void SerialClass::println(int)	8	static
+../source/arduino_if.cpp:23:6:void SerialClass::println(unsigned int)	8	static
+../source/arduino_if.cpp:24:6:void SerialClass::println(long int)	8	static
+../source/arduino_if.cpp:25:6:void SerialClass::println(long unsigned int)	8	static
+../source/arduino_if.cpp:26:6:void SerialClass::println(double)	8	static
+../source/arduino_if.cpp:27:6:void SerialClass::println(char)	8	static
+../source/arduino_if.cpp:28:6:void SerialClass::println(const std::string&)	8	static
+../source/arduino_if.cpp:29:6:void SerialClass::println(std::string_view)	16	static
+../source/arduino_if.cpp:30:6:void SerialClass::mcu_init_stdio(int)	0	static
+../source/arduino_if.cpp:38:6:void pin_mode(int, int)	48	static
+../source/arduino_if.cpp:51:6:void digitalWrite(int, bool)	32	static
+../source/arduino_if.cpp:59:6:bool digitalRead(int)	32	static
+../source/arduino_if.cpp:69:6:void delay(long unsigned int)	8	static
+../source/arduino_if.cpp:75:5:int main()	8	static
+../source/arduino_if.cpp:83:1:cpp)	4	static
