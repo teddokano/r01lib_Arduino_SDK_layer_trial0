@@ -28,6 +28,7 @@ RM := rm -rf
 -include component/serial_manager/subdir.mk
 -include component/lists/subdir.mk
 -include board/subdir.mk
+-include arduino_layer/subdir.mk
 ifneq ($(MAKECMDGOALS),clean)
 ifneq ($(strip $(C++M_DEPS)),)
 -include $(C++M_DEPS)
