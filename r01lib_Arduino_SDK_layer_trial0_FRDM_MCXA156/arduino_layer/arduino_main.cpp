@@ -7,6 +7,8 @@
 #include	"r01lib.h"
 #include	"arduino.h"
 
+int		main() __attribute__((weak));
+
 int main( void )
 {
 	setup();
