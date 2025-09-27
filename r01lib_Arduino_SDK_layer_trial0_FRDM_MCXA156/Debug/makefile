@@ -9,7 +9,6 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include source/subdir.mk
--include arduino_layer/subdir.mk
 -include _r01lib_irq/subdir.mk
 ifneq ($(MAKECMDGOALS),clean)
 ifneq ($(strip $(C++M_DEPS)),)

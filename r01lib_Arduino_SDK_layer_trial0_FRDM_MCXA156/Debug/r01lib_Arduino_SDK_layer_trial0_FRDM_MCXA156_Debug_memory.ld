@@ -6,7 +6,7 @@
  * Generated linker script file for MCXA156
  * Created from memory.ldt by FMCreateLinkMemory
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/09/27 9:29:30
+ * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/09/27 13:54:57
  */
 
 MEMORY
