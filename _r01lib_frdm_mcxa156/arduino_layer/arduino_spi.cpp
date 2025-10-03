@@ -28,6 +28,10 @@ void SPIClass::transfer( uint8_t *data, int length )
 	txrx( data, length );
 }
 
+void SPIClass::endTransaction( void )
+{
+}
+
 void SPIClass::txrx( uint8_t *data, int size )
 {
 	static constexpr int	READ_BUFFER_SIZE	= 128;
