@@ -48,7 +48,7 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := p3t1085_a153
+BUILD_ARTIFACT_NAME := TEST_WireClass_p3t1085_a153
 BUILD_ARTIFACT_EXTENSION := axf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
@@ -60,24 +60,24 @@ all:
 	+@$(MAKE) --no-print-directory main-build && $(MAKE) --no-print-directory post-build
 
 # Main-build Target
-main-build: p3t1085_a153.axf
+main-build: TEST_WireClass_p3t1085_a153.axf
 
 # Tool invocations
-p3t1085_a153.axf: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
+TEST_WireClass_p3t1085_a153.axf: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU C++ Linker'
-	arm-none-eabi-c++ -nostdlib -L"/Users/tedd/dev/mcuxpresso/__r01lib_Arduino_SDK_layer_trial0/_r01lib_frdm_mcxa153/Release" -Xlinker -Map="p3t1085_a153.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m33+nodsp -mthumb -T p3t1085_a153_Release.ld -u _printf_float -u _scanf_float -o "p3t1085_a153.axf" $(OBJS) $(USER_OBJS) $(LIBS) -l_r01lib_frdm_mcxa153
+	arm-none-eabi-c++ -nostdlib -L"/Users/tedd/dev/mcuxpresso/r01lib_Arduino_SDK_layer_trial0/_r01lib_frdm_mcxa153/Release" -Xlinker -Map="TEST_WireClass_p3t1085_a153.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m33+nodsp -mthumb -T TEST_WireClass_p3t1085_a153_Release.ld -u _printf_float -u _scanf_float -o "TEST_WireClass_p3t1085_a153.axf" $(OBJS) $(USER_OBJS) $(LIBS) -l_r01lib_frdm_mcxa153
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) p3t1085_a153.axf
+	-$(RM) TEST_WireClass_p3t1085_a153.axf
 	-@echo ' '
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size "p3t1085_a153.axf"; # arm-none-eabi-objcopy -v -O binary "p3t1085_a153.axf" "p3t1085_a153.bin" ; # checksum -p MCXA153 -d "p3t1085_a153.bin";
+	-arm-none-eabi-size "TEST_WireClass_p3t1085_a153.axf"; # arm-none-eabi-objcopy -v -O binary "TEST_WireClass_p3t1085_a153.axf" "TEST_WireClass_p3t1085_a153.bin" ; # checksum -p MCXA153 -d "TEST_WireClass_p3t1085_a153.bin";
 	-@echo ' '
 
 .PHONY: all clean dependents main-build post-build

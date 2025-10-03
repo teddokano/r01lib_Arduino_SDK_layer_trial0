@@ -819,4 +819,5 @@
 			<resource resourceType="PROJECT" workspacePath="/MCXN947_Project"/>
 		</configuration>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>
