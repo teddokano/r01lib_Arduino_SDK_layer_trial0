@@ -17,10 +17,14 @@ void pin_mode( int pin_num, int mode )
 	
 	if ( it != digital_pins.end() )
 	{
+		(digital_pins[ pin_num ])->mode( mode );
 	}
 	else
 	{	
 		digital_pins[ pin_num ]	= new DigitalInOut( pin_num, mode );
+
+		if ( digital_pins[ pin_num ] == nullptr )
+			panic( "error @ new, in pin_mode()" );
 	}
 }
 

@@ -7,8 +7,6 @@
 #ifndef R01LIB_ARDUINO_IO_H
 #define R01LIB_ARDUINO_IO_H
 
-#include	"arduino_io.h"
-
 constexpr int	INPUT	= DigitalInOut::INPUT;
 constexpr int	OUTPUT	= DigitalInOut::OUTPUT;
 constexpr bool	HIGH	= true;
