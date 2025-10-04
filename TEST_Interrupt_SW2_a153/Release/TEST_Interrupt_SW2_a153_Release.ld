@@ -6,7 +6,7 @@
  * Generated linker script file for MCXA153
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/10/04 7:59:35
+ * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/10/05 6:44:18
  */
 
 INCLUDE "TEST_Interrupt_SW2_a153_Release_library.ld"

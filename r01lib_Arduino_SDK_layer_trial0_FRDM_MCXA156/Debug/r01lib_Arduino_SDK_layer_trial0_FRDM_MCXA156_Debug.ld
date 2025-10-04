@@ -6,7 +6,7 @@
  * Generated linker script file for MCXA156
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/10/04 8:00:22
+ * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2025/10/05 6:45:17
  */
 
 INCLUDE "r01lib_Arduino_SDK_layer_trial0_FRDM_MCXA156_Debug_library.ld"
