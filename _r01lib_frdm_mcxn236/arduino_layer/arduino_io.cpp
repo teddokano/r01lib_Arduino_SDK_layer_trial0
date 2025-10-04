@@ -13,9 +13,13 @@ std::map<int, DigitalInOut*>	digital_pins;
 
 void pin_mode( int pin_num, int mode )
 {
+#ifdef	ARDUINO_PIN_RENUMBERING
+	pin_num	= arduino_pin_by_number[ pin_num ];
+#endif
+	
 	int	dir		= mode & 0x1;
 	int	pull	= mode & DigitalInOut::PullUp;
-	
+
 	auto	it	= digital_pins.find( pin_num );
 	
 	if ( it != digital_pins.end() )
@@ -36,6 +40,10 @@ void pin_mode( int pin_num, int mode )
 
 void digitalWrite( int pin_num, bool state )
 {
+#ifdef	ARDUINO_PIN_RENUMBERING
+	pin_num	= arduino_pin_by_number[ pin_num ];
+#endif
+	
 	auto	it	= digital_pins.find( pin_num );
 	
 	if ( it != digital_pins.end() )
@@ -44,6 +52,10 @@ void digitalWrite( int pin_num, bool state )
 
 bool digitalRead( int pin_num )
 {
+#ifdef	ARDUINO_PIN_RENUMBERING
+	pin_num	= arduino_pin_by_number[ pin_num ];
+#endif
+	
 	auto	it	= digital_pins.find( pin_num );
 	
 	if ( it != digital_pins.end() )
@@ -52,9 +64,13 @@ bool digitalRead( int pin_num )
 		return	false;
 }
 
-void attachInterrupt( int int_num, void (*callback)(void), int mode )
+void attachInterrupt( int pin_num, void (*callback)(void), int mode )
 {
-	InterruptIn* int_pin	= new InterruptIn( int_num );
+#ifdef	ARDUINO_PIN_RENUMBERING
+	pin_num	= arduino_pin_by_number[ pin_num ];
+#endif
+	
+	InterruptIn* int_pin	= new InterruptIn( pin_num );
 
 	if ( int_pin == nullptr )
 		panic( "error @ new, in attachInterrupt()" );
