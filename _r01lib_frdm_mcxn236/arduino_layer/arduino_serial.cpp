@@ -142,6 +142,20 @@ void SerialClass::println(std::string_view s) {
     println();
 }
 
+#define MAX_PRINTF_BUFFER 256
+
+void SerialClass::printf( const char *format, ... )
+{
+	char    s[ MAX_PRINTF_BUFFER ];
+	va_list args;
+
+	va_start( args, format );
+	vsnprintf( s, MAX_PRINTF_BUFFER, format, args );
+	va_end( args );
+
+	puts( s );
+}
+
 // Dummy implementation for mcu_init_stdio
 void SerialClass::mcu_init_stdio(int baud) {
     // Implement MCU-specific stdio initialization here
