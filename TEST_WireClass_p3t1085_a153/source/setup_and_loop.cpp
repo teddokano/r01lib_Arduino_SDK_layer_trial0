@@ -6,7 +6,7 @@
 
 #include	"arduino.h"
 
-
+#define	TARGET_ADDRESS	0x4C
 
 void setup( void )
 {
@@ -20,14 +20,14 @@ void setup( void )
 
 void loop( void )
 {
-	Wire.beginTransmission( 0x48 );
+	Wire.beginTransmission( TARGET_ADDRESS );
 	Wire.write( 0x00 );
 	Wire.endTransmission( false );
 
 	int8_t	buf[ 2 ]	= { 0, 0 };
 	int		i	= 0;
 
-	Wire.requestFrom( 0x48, 2 );
+	Wire.requestFrom( TARGET_ADDRESS, 2 );
 
 	while ( Wire.available() )
 		buf[ i++ ]	= Wire.read();
