@@ -6,7 +6,7 @@
  * Generated linker script file for MCXA153
  * Created from library.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2026/01/05 10:24:46
+ * MCUXpresso IDE v25.6 [Build 136] [2025-06-27] on 2026/03/28 7:05:54
  */
 
 GROUP (

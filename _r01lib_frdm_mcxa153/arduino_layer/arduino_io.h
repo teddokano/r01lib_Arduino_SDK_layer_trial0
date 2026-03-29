@@ -9,9 +9,8 @@
 
 #define	ARDUINO_PIN_RENUMBERING
 
-
-constexpr int	INPUT			= DigitalInOut::INPUT;
-constexpr int	OUTPUT			= DigitalInOut::OUTPUT;
+constexpr int	INPUT		= DigitalInOut::INPUT;
+constexpr int	OUTPUT		= DigitalInOut::OUTPUT;
 constexpr int	INPUT_PULLUP	= INPUT | DigitalInOut::PullUp;
 
 constexpr bool	HIGH	= true;

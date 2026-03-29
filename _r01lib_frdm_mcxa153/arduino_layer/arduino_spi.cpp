@@ -1,41 +1,62 @@
-#include "r01lib.h"
-#include "arduino_spi.h"
+/*
+ *  @author Tedd OKANO
+ *
+ *  Released under the MIT license
+ */
 
-SPI	spi( ARD_MOSI, ARD_MISO, ARD_SCK, ARD_CS );	//	MOSI, MISO, SCLK, CS
+#include	"r01lib.h"
 
-SPISettings::SPISettings( uint32_t freq, int order, int mode ) : clock( freq ), bitOrder( order ), dataMode( mode )
+// Alias to avoid name collision: SPIClass uses "SPI" as member type,
+// but r01lib defines a class called "SPI" and we also define "SPIClass SPI".
+using r01libSPI = SPI;
+
+#include	"arduino_spi.h"
+#include	"arduino_io.h"
+
+SPIClass	SPI;
+
+SPIClass::SPIClass() : _spi( nullptr )
 {
 }
 
 void SPIClass::begin( void )
 {
+	if ( !_spi )
+		_spi = new r01libSPI( SPI_MOSI, SPI_MISO, SPI_SCLK, SPI_CS );
 }
 
-void	SPIClass::beginTransaction( SPISettings settings )
+void SPIClass::end( void )
 {
-	spi.frequency( settings.clock );
-	spi.mode( settings.dataMode );
+	if ( _spi )
+	{
+		delete _spi;
+		_spi = nullptr;
+	}
+}
+
+void SPIClass::beginTransaction( SPISettings settings )
+{
+	if ( _spi )
+		_spi->frequency( settings._clock );
+}
+
+void SPIClass::endTransaction( void )
+{
+	// no-op
 }
 
 uint8_t SPIClass::transfer( uint8_t data )
 {
-	txrx( &data, 1 );
-	return data;
+	if ( !_spi ) return 0;
+	uint8_t rx = 0;
+	// spi.h: write( uint8_t *wp, uint8_t *rp, int length )  — 3 arguments
+	_spi->write( &data, &rx, 1 );
+	return rx;
 }
 
-void SPIClass::transfer( uint8_t *data, int length )
+uint16_t SPIClass::transfer16( uint16_t data )
 {
-	txrx( data, length );
+	uint8_t hi = transfer( (uint8_t)(data >> 8) );
+	uint8_t lo = transfer( (uint8_t)(data & 0xFF) );
+	return ( (uint16_t)hi << 8 ) | lo;
 }
-
-void SPIClass::txrx( uint8_t *data, int size )
-{
-	static constexpr int	READ_BUFFER_SIZE	= 128;
-
-	uint8_t	r_data[ READ_BUFFER_SIZE ];
-	
-	spi.write( data, r_data, size );
-	memcpy( data, r_data, size );
-}
-
-SPIClass	SPI_;

@@ -1,56 +1,65 @@
-#include "r01lib.h"
-#include "arduino_i2c.h"
+/*
+ *  @author Tedd OKANO
+ *
+ *  Released under the MIT license
+ */
 
-I2C	i2c( I2C_SDA, I2C_SCL );	//	SDA, SCL
+#include	"r01lib.h"
+#include	"arduino.h"
 
-void WireClass::begin( int baud )
+WireClass	Wire;
+
+WireClass::WireClass()
+	: _i2c( nullptr ), _addr( 0 ), _tx_len( 0 ), _rx_len( 0 ), _rx_pos( 0 )
 {
-	baudrate	= baud;
-	i2c.frequency( baudrate );
 }
 
-void WireClass::beginTransmission( const uint8_t address )
+void WireClass::begin( void )
 {
-	targ_addr		= address;
-	data_buf_index	= 0;
+	if ( !_i2c )
+		_i2c = new I2C( I2C_SDA, I2C_SCL );
 }
 
-size_t WireClass::write( uint8_t data )
+void WireClass::beginTransmission( uint8_t addr )
 {
-	data_buf[ data_buf_index++ ]	= data;
-
-	return	data_buf_index;
+	_addr	= addr;
+	_tx_len	= 0;
 }
 
-size_t WireClass::write( const uint8_t *data, size_t length )
+void WireClass::write( uint8_t data )
 {
-    memcpy( &data_buf[ data_buf_index ], data, length );
-	data_buf_index += length;
-
-	return	data_buf_index;
+	if ( _tx_len < (int)sizeof(_tx_buf) )
+		_tx_buf[ _tx_len++ ] = data;
 }
 
 uint8_t WireClass::endTransmission( bool stop )
 {
-	return	i2c.write( targ_addr, data_buf, data_buf_index, stop );
+	if ( !_i2c ) return 4;
+	// i2c.h: write( uint8_t address, const uint8_t *dp, int length, bool stop )
+	int r = _i2c->write( (_addr << 1), (const uint8_t*)_tx_buf, _tx_len, !stop );
+	return ( r == 0 ) ? 0 : 2;
 }
 
-uint8_t	WireClass::requestFrom( const uint8_t address, const size_t length, bool stop )
+uint8_t WireClass::requestFrom( uint8_t addr, uint8_t length, bool stop )
 {
-	data_buf_index	= 0;
-	read_size		= length;
-	
-	return	i2c.read( address, data_buf, length );
+	if ( !_i2c ) return 0;
+	_rx_pos = 0;
+	_rx_len = 0;
+	// i2c.h: read( uint8_t address, uint8_t *dp, int length, bool stop )
+	int r = _i2c->read( (addr << 1), (uint8_t*)_rx_buf, length, !stop );
+	if ( r == 0 )
+		_rx_len = length;
+	return _rx_len;
 }
 
-uint8_t WireClass::available( void )
+int WireClass::read( void )
 {
-	return read_size - data_buf_index;
+	if ( _rx_pos < _rx_len )
+		return _rx_buf[ _rx_pos++ ];
+	return -1;
 }
 
-uint8_t WireClass::read( void )
+int WireClass::available( void )
 {
-	return	data_buf[ data_buf_index++ ];
+	return _rx_len - _rx_pos;
 }
-
-WireClass	Wire;

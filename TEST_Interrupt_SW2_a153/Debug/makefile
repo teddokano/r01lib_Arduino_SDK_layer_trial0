@@ -66,7 +66,7 @@ main-build: TEST_Interrupt_SW2_a153.axf
 TEST_Interrupt_SW2_a153.axf: $(OBJS) $(USER_OBJS) makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU C++ Linker'
-	arm-none-eabi-c++ -nostdlib -L"/Users/tedd/dev/mcuxpresso/r01lib_Arduino_SDK_layer_trial0/_r01lib_frdm_mcxa153/Debug" -Xlinker -Map="TEST_Interrupt_SW2_a153.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m33+nodsp -mthumb -T TEST_Interrupt_SW2_a153_Debug.ld -u _printf_float -u _scanf_float -o "TEST_Interrupt_SW2_a153.axf" $(OBJS) $(USER_OBJS) $(LIBS) -l_r01lib_frdm_mcxa153
+	arm-none-eabi-c++ -nostdlib -L"/Users/tedd/dev/mcuxpresso/r01lib_Arduino_SDK_layer_trial1/_r01lib_frdm_mcxa153/Debug" -Xlinker -Map="TEST_Interrupt_SW2_a153.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m33+nodsp -mthumb -T TEST_Interrupt_SW2_a153_Debug.ld -u _printf_float -u _scanf_float -o "TEST_Interrupt_SW2_a153.axf" $(OBJS) $(USER_OBJS) $(LIBS) -l_r01lib_frdm_mcxa153
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -9,8 +9,8 @@
 
 #include	<string>
 #include	<string_view>
-
-#include    <stdarg.h>
+#include	<stdarg.h>
+#include	<stdint.h>
 
 // Number base definitions
 #define DEC 10
@@ -18,36 +18,58 @@
 #define OCT 8
 #define BIN 2
 
+// Forward-declare r01lib's Serial to avoid including r01lib.h here
+// (which would create circular dependency via arduino.h)
+class Serial;
+
+/**
+ * @brief Arduino-compatible Serial wrapper around r01lib's Serial class.
+ *
+ * Provides begin()/print()/println()/printf() API.
+ * The internal r01lib Serial instance is created lazily in begin().
+ */
 class SerialClass
 {
 public:
-    void	begin( int baud );
-	
-    void	print( const char *s );
-    void	print( int n, int base = DEC );
-    void	print( unsigned int n, int base = DEC );
-    void	print( long n, int base = DEC );
-    void	print( unsigned long n, int base = DEC );
-    void	print( double n );
-    void	print( char c );
-    void	print( const std::string& s );
-    void	print( std::string_view s );
+	SerialClass( int tx, int rx );
+
+	void	begin( int baud );
+
+	void	print( const char *s );
+	void	print( int n, int base = DEC );
+	void	print( unsigned int n, int base = DEC );
+	void	print( long n, int base = DEC );
+	void	print( unsigned long n, int base = DEC );
+	void	print( double n );
+	void	print( char c );
+	void	print( const std::string& s );
+	void	print( std::string_view s );
 
 	void	println( void );
-    void	println( const char *s );
-    void	println( int n, int base = DEC );
-    void	println( unsigned int n, int base = DEC );
-    void	println( long n, int base = DEC );
-    void	println( unsigned long n, int base = DEC );
-    void	println( double n );
-    void	println( char c );
-    void	println( const std::string& s );
-    void	println( std::string_view s );
+	void	println( const char *s );
+	void	println( int n, int base = DEC );
+	void	println( unsigned int n, int base = DEC );
+	void	println( long n, int base = DEC );
+	void	println( unsigned long n, int base = DEC );
+	void	println( double n );
+	void	println( char c );
+	void	println( const std::string& s );
+	void	println( std::string_view s );
 
 	void	printf( const char *format, ... );
 
+	int		read( void );
+	int		available( void );
+	void	write( uint8_t c );
+
 private:
-    void	mcu_init_stdio( int baud );
+	int		_tx;
+	int		_rx;
+	int		_baud;
+	Serial*	_serial;   // r01lib Serial (forward-declared above)
+
+	void	_print_num( long n, int base );
+	void	_print_unum( unsigned long n, int base );
 };
 
 extern SerialClass	Serial;
