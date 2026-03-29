@@ -20,8 +20,8 @@ void pin_mode( int pin_num, int mode )
 		if ( pin_num < 0 || pin_num >= MAX_DIGITAL_PINS )
 				return;
 
-		int     dir     = mode & 0x1;
-		int     pull    = mode & DigitalInOut::PullUp;
+		int     dir     = (mode == OUTPUT) ? DigitalInOut::OUTPUT : DigitalInOut::INPUT;
+		int     pull    = (mode == INPUT_PULLUP) ? DigitalInOut::PullUp : DigitalInOut::PullNone;
 
 		if ( digital_pins[ pin_num ] != nullptr )
 		{
